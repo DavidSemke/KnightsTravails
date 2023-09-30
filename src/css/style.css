@@ -11,9 +11,9 @@ body {
 }
 
 td, th {
+    text-align: center;
     width: 80px;
     height: 80px;
-    text-align: center;
 }
 
 td {
@@ -24,7 +24,7 @@ td {
     background-color: rgb(121, 68, 33);
 }
 
-.cellDark:hover {
+.cellDark:hover, .cellDarkHover {
     background-color: rgb(163, 106, 68);
 }
 
@@ -32,7 +32,7 @@ td {
     background-color: rgb(197, 149, 116);
 }
 
-.cellLight:hover {
+.cellLight:hover, .cellLightHover {
     background-color: rgb(230, 189, 161);
 }
 
@@ -42,6 +42,16 @@ td {
 
 .textMedium {
     font-size: large;
+}
+
+#knight, #x {
+    cursor: grab;
+    padding-top: 5px;
+}
+
+#x {
+    width: 60px;
+    height: 60px;
 }
 
 #board {

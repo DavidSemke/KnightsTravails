@@ -4,50 +4,66 @@ import { view } from "./view"
 
 
 const controller = (() => {
-    view.createBoard(8, 8)
-    view.insertKnight()
-
-    const knightIcon = document.querySelector('#knight')
-    // knightIcon.draggable = true
-
+    
+    view.initialSetup()
+    view.showPath(knight.knightMoves)
+    
     /* Events fired on drag target */
 
     document.addEventListener("dragstart", function(event) {
         event.dataTransfer.setData("dragTargetID", event.target.id);
-        event.target.style.opacity = "0.5";
-    });
-    
-    document.addEventListener("dragend", function(event) {
-        event.dataTransfer.getData("dragTargetID")
-
-
-
-        event.target.style.opacity = "1";
     });
     
     /* Events fired on drop target */
     
-    // By default, data/elements cannot be dropped in other elements. To allow a drop, we must prevent the default handling of the element
     document.addEventListener("dragover", function(event) {
         event.preventDefault();
     });
+
+    document.addEventListener("dragenter", function(event) {
+        const target = event.target
+        const classes = target.className.split(' ')
+
+        // target should be drop target and have no children
+        // (if target has child, target already contains drag target)
+        if (classes.includes("dropTarget") && !target.hasChildNodes()) {
+            
+            if (classes.includes("cellDark")) {
+                target.classList.add('cellDarkHover')
+            }
+            else if (classes.includes("cellLight")) {
+                target.classList.add('cellLightHover')
+            }  
+        }
+    })
+
+    document.addEventListener("dragleave", function(event) {
+        const target = event.target
+        const classes = target.className.split(' ')
+
+        if (classes.includes("dropTarget") && !target.hasChildNodes()) {
+            target.classList.remove('cellDarkHover')
+            target.classList.remove('cellLightHover')
+        }
+    })
     
     document.addEventListener("drop", function(event) {
-        event.preventDefault();
-        if ( event.target.className == "dropTarget" ) {
-            const data = event.dataTransfer.getData("dragTargetID");
-            event.target.appendChild(document.getElementById(data));
+        event.preventDefault()
+        const target = event.target
+        const classes = target.className.split(' ')
+
+        if (classes.includes("dropTarget") && !target.hasChildNodes()) {
+            target.classList.remove('cellDarkHover')
+            target.classList.remove('cellLightHover')
+
+            const dragID = event.dataTransfer.getData("dragTargetID")
+            const dragTarget = document.getElementById(dragID)
+            
+            // remove from old pos, add to new pos
+            dragTarget.parentElement.removeChild(dragTarget)
+            target.appendChild(dragTarget)
+
+            // calc new moves
         }
-    });
-    
-    
-
+    })
 })()
-
-
-
-
-
-
-// const moves = knight.knightMoves([3,3],[4,3])
-// view.showPath(moves)
