@@ -1,0 +1,62 @@
+body,
+html {
+  height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(253, 236, 225);
+}
+
+td, th {
+    width: 80px;
+    height: 80px;
+    text-align: center;
+}
+
+td {
+    border: 1px solid black;
+}
+
+.cellDark {
+    background-color: rgb(121, 68, 33);
+}
+
+.cellDark:hover {
+    background-color: rgb(163, 106, 68);
+}
+
+.cellLight {
+    background-color: rgb(197, 149, 116);
+}
+
+.cellLight:hover {
+    background-color: rgb(230, 189, 161);
+}
+
+.textLarge {
+    font-size: x-large;
+}
+
+.textMedium {
+    font-size: large;
+}
+
+#board {
+    border-collapse: collapse;
+}
+
+#path {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+#pathView {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 40px;
+}
