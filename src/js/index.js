@@ -63,7 +63,15 @@ const controller = (() => {
             dragTarget.parentElement.removeChild(dragTarget)
             target.appendChild(dragTarget)
 
-            // calc new moves
+            // update view module variables
+            if (dragID === 'knight') {
+                view.setKnightCell(target)
+            }
+            else if (dragID === 'x') {
+                view.setXCell(target)
+            }
+
+            view.showPath(knight.knightMoves)
         }
     })
 })()

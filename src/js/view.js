@@ -6,6 +6,7 @@ const view = (() => {
     let knightCell = null
     let xCell = null
 
+
     function initialSetup() {
         createBoard(8, 8)
         knightCell = insertKnight()
@@ -91,20 +92,18 @@ const view = (() => {
     function showPath(movesFunc) {
         const startPos = knightCell.id.split(':').map(str => parseInt(str))
         const endPos = xCell.id.split(':').map(str => parseInt(str))
-        
         const moves = movesFunc(startPos, endPos)
+        
         showPathText(moves)
+        showPathLines(moves)
     }
     
     function showPathText(moves) {
-        const view = document.querySelector('#pathView')
-        view.innerHTML = ''
-    
-        const p = document.createElement('p')
+        const p = document.getElementById('pathLen')
         p.textContent = `${moves.length-1} moves required:`
 
-        const pathDiv = document.createElement('div')
-        pathDiv.id = 'path'
+        const pathDiv = document.getElementById('pathText')
+        pathDiv.innerHTML = ''
     
         for (const move of moves) {
             const positionDiv = document.createElement('div')
@@ -119,13 +118,63 @@ const view = (() => {
         }
 
         pathDiv.removeChild(pathDiv.lastChild)
-    
-        for (const el of [p, pathDiv]) {
-            view.appendChild(el)
-        }
     }
 
-    return { initialSetup, showPath, knightCell, xCell }
+    function showPathLines(moves) {
+        let svg = document.querySelector('svg')
+
+        // remove old lines
+        if (svg) {
+            document.body.removeChild(svg)
+        }
+
+        svg = document.createElementNS(
+            'http://www.w3.org/2000/svg', 'svg'
+        )
+
+        for (let i=0; i<moves.length-1; i++) {
+            const curr = moves[i]
+            const currCell = document.getElementById(
+                `${curr[0]}:${curr[1]}`
+            )
+            const currRect = currCell.getBoundingClientRect()
+
+            const next = moves[i+1]
+            const nextCell = document.getElementById(
+                `${next[0]}:${next[1]}`
+            )
+            const nextRect = nextCell.getBoundingClientRect()
+
+            const x1 = currRect.left + currRect.width/2 + window.scrollX
+            const y1 = currRect.top + currRect.height/2 + window.scrollY
+            const x2 = nextRect.left + nextRect.width/2 + window.scrollX
+            const y2 = nextRect.top + nextRect.height/2 + window.scrollY
+
+            const line = document.createElementNS(
+                'http://www.w3.org/2000/svg', 'line'
+            )
+            line.setAttribute('x1', x1);
+            line.setAttribute('y1', y1);
+            line.setAttribute('x2', x2);
+            line.setAttribute('y2', y2);
+            line.setAttribute('stroke', 'red');
+            line.setAttribute('stroke-width', 2);
+            
+            svg.appendChild(line)
+        }
+
+        document.body.appendChild(svg)
+    }
+
+    function setKnightCell(cell) {
+        knightCell = cell
+    }
+
+    function setXCell(cell) {
+        xCell = cell
+    }
+
+    return { initialSetup, showPath, setKnightCell, setXCell }
 
 })()
 
