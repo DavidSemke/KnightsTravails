@@ -4,92 +4,96 @@ html {
 }
 
 body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    overflow: auto;
-    background-color: rgb(253, 236, 225);
-    margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: auto;
+  background-color: rgb(253, 236, 225);
+  margin: 0;
 }
 
-td, th {
-    text-align: center;
-    width: 80px;
-    height: 80px;
+td,
+th {
+  text-align: center;
+  width: 80px;
+  height: 80px;
 }
 
 td {
-    border: 1px solid black;
+  border: 1px solid black;
 }
 
 svg {
-    pointer-events: none;
-    position: absolute;
-    height: 100%;
-    width: 100%;
+  pointer-events: none;
+  position: absolute;
+  height: 100%;
+  width: 100%;
 }
 
 .cellDark {
-    background-color: rgb(121, 68, 33);
+  background-color: rgb(121, 68, 33);
 }
 
-.cellDark:hover, .cellDarkHover {
-    background-color: rgb(163, 106, 68);
+.cellDark:hover,
+.cellDarkHover {
+  background-color: rgb(163, 106, 68);
 }
 
 .cellLight {
-    background-color: rgb(197, 149, 116);
+  background-color: rgb(197, 149, 116);
 }
 
-.cellLight:hover, .cellLightHover {
-    background-color: rgb(230, 189, 161);
+.cellLight:hover,
+.cellLightHover {
+  background-color: rgb(230, 189, 161);
 }
 
 .line {
-    stroke: red;
-    stroke-width: 2px;
+  stroke: red;
+  stroke-width: 2px;
 }
 
 .textLarge {
-    font-size: x-large;
+  font-size: x-large;
 }
 
 .textMedium {
-    font-size: large;
+  font-size: large;
 }
 
-#knight, #x {
-    cursor: grab;
-    padding-top: 5px;
+#knight,
+#x {
+  cursor: grab;
+  padding-top: 5px;
 }
 
 #x {
-    width: 60px;
-    height: 60px;
+  width: 60px;
+  height: 60px;
 }
 
 #board {
-    border-collapse: collapse;
+  border-collapse: collapse;
 }
 
 #lineView {
-    position: fixed;
-    pointer-events: none;
-    left: 0px;
-    top: 0px;
-    z-index: 1000;
-    margin: 0;
+  position: fixed;
+  pointer-events: none;
+  left: 0px;
+  top: 0px;
+  z-index: 1000;
+  margin: 0;
 }
 
 #pathText {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
 }
 
 #pathView {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 40px;
 }
