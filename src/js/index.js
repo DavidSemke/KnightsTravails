@@ -68,3 +68,7 @@ document.addEventListener("drop", function (event) {
     view.showPath(knight.knightMoves);
   }
 });
+
+window.onresize = function () {
+  view.showPath(knight.knightMoves);
+};
