@@ -73,15 +73,6 @@ svg {
   border-collapse: collapse;
 }
 
-#lineView {
-  position: fixed;
-  pointer-events: none;
-  left: 0px;
-  top: 0px;
-  z-index: 1000;
-  margin: 0;
-}
-
 #pathText {
   display: flex;
   justify-content: center;
